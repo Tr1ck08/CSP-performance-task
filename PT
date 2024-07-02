@@ -1,0 +1,63 @@
+import java.util.Scanner;
+public class AppMain{
+    //list to store all of the morse code values of the letters...
+    static String[][] morseCode = {
+        {"A", ".-"},
+        {"B", "-..."},
+        {"C", "-.-."},
+        {"D", "-.."},
+        {"E", "."},
+        {"F", "..-."},
+        {"G", "--."},
+        {"H", "...."},
+        {"I", ".."},
+        {"J", ".---"},
+        {"K", "-.-"},
+        {"L", ".-.."},
+        {"M", "--"},
+        {"N", "-."},
+        {"O", "---"},
+        {"P", ".--."},
+        {"Q", "--.-"},
+        {"R", ".-."},
+        {"S", "..."},
+        {"T", "-"},
+        {"U", "..-"},
+        {"V", "...-"},
+        {"W", ".--"},
+        {"X", "-..-"},
+        {"Y", "-.--"},
+        {"Z", "--.."}
+    };
+    
+    public static void main(String[] args) {
+        //take input from user and stores it...
+        Scanner temp = new Scanner(System.in);
+        System.out.println("Enter the word that you would like to translate, there cannot be any punctuation or spaces:");
+        String word = temp.nextLine();  
+        //submtis user input into a function, then prints the return value...
+        System.out.println(getWord(word));
+    }
+
+    public static String getWord(String word){
+        //translates the user input into morse code...
+        String finalWord = "";
+        for(int i = 0; i < word.length(); i++){
+            //gets the morse code version of each letter...
+            finalWord += getMorse(word.substring(i,i+1));
+        }                                           
+        return finalWord;
+    }
+
+    public static String getMorse(String word){
+        //checks for the morse code version of the letter that is inputted into the function...
+        for(int i = 0; i < morseCode.length; i++){
+            if(morseCode[i][0].equals(word.toUpperCase())){
+                //returns the morse code variant of the letter...
+                return morseCode[i][1];
+            }
+        }
+        //if cant find, return null...
+        return null;
+    }
+}
